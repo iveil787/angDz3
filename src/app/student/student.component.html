@@ -1,0 +1,25 @@
+<div>
+<h2>My favorite students</h2>
+<button class="button" (click)="redAlert()">Подсветить неуспевающих</button><br>
+<div>
+  <input class="input" type="text"[(ngModel)] ="input" placeholder ="Поиск студентов">
+</div>
+<table class="table">
+  <tr>
+   <th class="th"> id</th>
+   <th>name</th>
+   <th>surname</th>
+   <th>patronymic</th>
+   <th>dateBirth</th>
+   <th>averagePoint</th>   
+  </tr>
+  <tr *ngFor="let record of student">
+   <td  > {{record.id}} </td>
+   <td [ngClass]="record.name === input ? 'yellow' :'text'"> {{record.name}} </td>
+   <td [ngClass]="record.surname === input ? 'yellow' :'text'"> {{record.surname}} </td>
+   <td > {{record.patronymic}} </td>
+   <td > {{record.dateBirth}} </td>
+   <td [ngClass]="record.rating < 3 && valueRed ? 'red' : 'text'"> {{record.rating}} </td>
+ </tr>
+</table>
+</div>
