@@ -5,4 +5,4 @@ export interface Student {
     patronymic: string;
     dateBirth: string;
     rating: number;
-  }
+  };

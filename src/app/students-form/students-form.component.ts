@@ -19,13 +19,19 @@ allStudent = STUDENTLIST;
   myForm : FormGroup;
   constructor(){
       this.myForm = new FormGroup({
-            
-          "userName": new FormControl("Tom", Validators.required),
-          "userEmail": new FormControl("gg@yandex.ru", [
-                              Validators.required, 
-                              Validators.email 
-                          ]),
-          "userPhone": new FormControl("1111111111", Validators.pattern("[0-9]{10}"))
+        UserAllName: new FormGroup({
+          "userName": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
+          // "userEmail": new FormControl("gg@yandex.ru", [
+          //                     Validators.required, 
+          //                     Validators.email 
+          //                 ]),
+          // "userPhone": new FormControl("1111111111", Validators.pattern("[0-9]{10}"))
+
+          "userSurname": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
+          "userPatronymic": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
+        }),         
+          "userDateBirth": new FormControl(null, Validators.required),
+          "userRating": new FormControl(null, [Validators.required, Validators.maxLength(1), Validators.pattern("[0-6]")]),
       });
   }
     
@@ -34,11 +40,11 @@ allStudent = STUDENTLIST;
       // const correctDate = this.newFormModel.value.birthDate.split("-").reverse().join(".");
       const newStudent = {
        "id": this.allStudent.length + 1,
-       "name": this.myForm.value.fullName.userName,
-       "surname":this.myForm.value.fullName.surname,       
-       "patronymic": this.myForm.value.fullName.patronymic,
-       "dateBirth": this.myForm.value.fullName.patronymic,
-       "rating":this.myForm.value.score,
+       "name": this.myForm.value.UserAllName.userName,
+       "surname":this.myForm.value.UserAllName.userSurname,       
+       "patronymic": this.myForm.value.UserAllName.userPatronymic,
+       "dateBirth": this.myForm.value.userDateBirth,
+       "rating":this.myForm.value.userRating,
       //  "deleted": false,
       //  "inRange": true
        };

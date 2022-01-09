@@ -1,6 +1,6 @@
 import { Student } from "./students ";
 
-export const STUDENTLIST : Student [] = [
+export let STUDENTLIST : Student [] = [
   { id: 1, name: 'Dr Nice', surname: 'Faust', patronymic: 'Bobovich', dateBirth: "01.01.1990",rating: 1},
   { id: 2, name: 'Narco', surname: 'Ivanov', patronymic: 'Popovich', dateBirth: "01.02.1991",rating: 2},
   { id: 3, name: 'Bombasto', surname: 'Smirnov', patronymic: 'Logovich', dateBirth: "01.03.1992",rating: 3},

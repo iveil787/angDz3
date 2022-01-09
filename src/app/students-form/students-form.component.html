@@ -1,0 +1,70 @@
+<form [formGroup]="myForm"
+ novalidate
+ (ngSubmit)="submit()"
+ (ngSubmit)="newStudent()">
+    
+ <div formGroupName = 'UserAllName'>
+ <div class="form-group">
+        <label>Имя</label>
+        <input class="form-control" name="name" formControlName="userName" />
+          
+        <!-- <div class="alert alert-danger"
+            *ngIf="myForm.controls['userName'].invalid && myForm.controls['userName'].touched">
+            Не указано имя
+        </div> -->
+    </div>
+
+    <div class="form-group">
+        <label>Фамилия</label>
+        <input class="form-control" name="name" formControlName="userSurname" />
+          
+        <!-- <div class="alert alert-danger"
+            *ngIf="myForm.controls['userSurname'].invalid && myForm.controls['userSurname'].touched">
+            Не указано имя
+        </div> -->
+    </div>
+
+    <div class="form-group">
+        <label>Отчество</label>
+        <input class="form-control" name="name" formControlName="userPatronymic" />
+          
+        <!-- <div class="alert alert-danger"
+            *ngIf="myForm.controls['userPatronymic'].invalid && myForm.controls['userPatronymic'].touched">
+            Не указано имя
+        </div> -->
+    </div>
+</div>
+    <div class="form-group">
+        <label>дата Рождения</label>
+        <input class="form-control" name="name" formControlName="userDateBirth" />
+          
+        <!-- <div class="alert alert-danger"
+            *ngIf="myForm.controls['userDateBirth'].invalid && myForm.controls['userDateBirth'].touched">
+            Не указано имя
+        </div> -->
+    </div>
+    
+    <div class="form-group">
+        <label>средний балл</label>
+        <input class="form-control" name="email" formControlName="userRating" />
+          
+        <!-- <div class="alert alert-danger"
+            *ngIf="myForm.controls['userRating'].invalid && myForm.controls['userRating'].touched">
+            Некорректный email
+        </div> -->
+    </div>
+    <!-- <div class="form-group">
+        <label>Телефон</label>
+        <input class="form-control" name="phone" formControlName="userPhone" />
+        <div class="alert alert-danger"
+            *ngIf="myForm.controls['userPhone'].invalid && myForm.controls['userPhone'].touched">
+            Некорректный номер телефона
+        </div>
+    </div> -->
+    <div class="form-group">
+        <button class="btn btn-default" [disabled]="myForm.invalid">
+            Отправить
+        </button>
+    </div>
+
+</form>
