@@ -14,14 +14,31 @@ module.exports = {
                 "ecmaVersion": "latest"
             },
             "plugins": [
+                "@angular-eslint",
                 "@typescript-eslint",
             ],
             "extends": [
                 "eslint:recommended",
                 "plugin:@typescript-eslint/recommended",
                 "plugin:@typescript-eslint/recommended-requiring-type-checking",
+                "plugin:@angular-eslint/recommended",
             ],
             "rules": {
+                // angular specific rules
+                "@angular-eslint/contextual-decorator": "error",
+                "@angular-eslint/no-attribute-decorator": "error",
+                "@angular-eslint/no-lifecycle-call": "error",
+                "@angular-eslint/no-pipe-impure": "error",
+                "@angular-eslint/prefer-on-push-component-change-detection": "off",
+                "@angular-eslint/use-injectable-provided-in": "error",
+                "@angular-eslint/use-lifecycle-interface": "error",
+                "@angular-eslint/component-max-inline-declarations": "error",
+                "@angular-eslint/no-forward-ref": "error",
+                "@angular-eslint/relative-url-prefix": "error",
+                "@angular-eslint/use-component-selector": "error",
+                "@angular-eslint/use-pipe-transform-interface": "error",
+                "@angular-eslint/no-queries-metadata-property": "error",
+                "@angular-eslint/sort-ngmodule-metadata-arrays": "error",
                 // ts specific rules
                 "@typescript-eslint/no-explicit-any": "warn",
                 "@typescript-eslint/ban-ts-comment": "warn",
@@ -268,6 +285,7 @@ module.exports = {
                 "prefer-arrow-callback": "error",
                 "symbol-description": "error",
                 "yield-star-spacing": "error",
+
                 // bad recommended rules
                 "@typescript-eslint/no-unsafe-call": "off",
                 "@typescript-eslint/no-unsafe-member-access": "off",
@@ -282,6 +300,22 @@ module.exports = {
                 "@typescript-eslint/no-unnecessary-type-assertion": "off",
                 "@typescript-eslint/no-unsafe-argument": "off",
                 "no-useless-escape": "off",
+                "ngrx/no-typed-store": "off",
+                "ngrx/no-multiple-actions-in-effects": "off",
+                "rxjs/no-implicit-any-catch": "off",
             },
-        },],
+        },
+        {
+            "files": ["*.html"],
+            "parser": "@angular-eslint/template-parser",
+            "plugins": ["@angular-eslint/template"],
+            "rules": {
+                "@angular-eslint/template/no-negated-async": "error",
+                "@angular-eslint/template/banana-in-box": "error",
+                "@angular-eslint/template/no-any": "error",
+                "@angular-eslint/template/conditional-complexity": "error",
+                "@angular-eslint/template/no-duplicate-attributes": "error",
+                "@angular-eslint/template/eqeqeq": "error",
+            },
+        }],
 };
