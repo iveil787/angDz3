@@ -46,15 +46,7 @@ allStudent = STUDENTLIST;
       this.allStudent.push(newStudent);
     }
   }
-
-  submit(){
-      console.log(this.allStudent.forEach((element) => {
-        for (const key in element) {
-          console.log(element);
-        }
-      }));
-  }
-
+  
   limitAge(control: AbstractControl): any {
     const date = new Date();
     const pastDate = new Date(date.setFullYear(date.getFullYear() - 10));
