@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <form [formGroup]="myForm"
  novalidate
- (ngSubmit)="submit()">    
- <div formGroupName = 'UserAllName'>
+ (ngSubmit)="newStudent()">    
+ <div formGroupName = "userAllName">
  <div class="form-group">
         <label>Имя</label>
         <input class="form-control" name="name" formControlName="userName" />

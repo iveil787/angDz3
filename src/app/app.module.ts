@@ -6,8 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { StudentComponent } from "./student/student.component";
 import { StudentsFormComponent } from "./students-form/students-form.component";
-import { ReactiveFormsModule }   from "@angular/forms";
-
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [

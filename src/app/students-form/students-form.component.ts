@@ -1,25 +1,24 @@
-import { Component, OnInit } from "@angular/core";
-import { Student } from "../students ";
+import { Component } from "@angular/core";
 import { STUDENTLIST  } from "../studentsLlist";
-import { NgForm } from "@angular/forms";
-import { ReactiveFormsModule }   from "@angular/forms";
 import { FormGroup, FormControl, Validators, AbstractControl } from "@angular/forms";
-import { InjectSetupWrapper } from "@angular/core/testing";
 
+export interface ValidationErrors {
+  [key: string]: unknown;
+  }
 
 @Component({
   selector: "app-students-form",
   templateUrl: "./students-form.component.html",
   styleUrls: ["./students-form.component.css"]
 })
-export class StudentsFormComponent implements OnInit {
+export class StudentsFormComponent {
 
 allStudent = STUDENTLIST;
 
   myForm: FormGroup;
   constructor(){
       this.myForm = new FormGroup({
-        UserAllName: new FormGroup({
+        userAllName: new FormGroup({
           "userName": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
           "userSurname": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
           "userPatronymic": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
@@ -32,22 +31,18 @@ allStudent = STUDENTLIST;
 
   newStudent(): void{
     if (this.myForm.valid){
-      // const correctDate = this.newFormModel.value.birthDate.split("-").reverse().join(".");
       const newStudent = {
        "id": this.allStudent.length + 1,
-       "name": this.myForm.value.UserAllName.userName,
-       "surname":this.myForm.value.UserAllName.userSurname,
-       "patronymic": this.myForm.value.UserAllName.userPatronymic,
+       "name": this.myForm.value.userAllName.userName,
+       "surname":this.myForm.value.userAllName.userSurname,
+       "patronymic": this.myForm.value.userAllName.userPatronymic,
        "dateBirth": this.myForm.value.userDateBirth,
        "rating":this.myForm.value.userRating,
-      //  "deleted": false,
-      //  "inRange": true
-       };
+      };
       this.allStudent.push(newStudent);
     }
   }
-  
-  limitAge(control: AbstractControl): any {
+  limitAge(control: AbstractControl): ValidationErrors | null {
     const date = new Date();
     const pastDate = new Date(date.setFullYear(date.getFullYear() - 10));
     const inputDate = new Date(control.value);
@@ -57,8 +52,4 @@ allStudent = STUDENTLIST;
   }
   return null;
   }
-
-  ngOnInit(): void {
-  }
-
 }
