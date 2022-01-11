@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { Student } from "../students ";
+import { Component } from "@angular/core";
 import { STUDENTLIST  } from "../studentsLlist";
 
 
@@ -8,18 +7,16 @@ import { STUDENTLIST  } from "../studentsLlist";
   templateUrl: "./student.component.html",
   styleUrls: ["./student.component.css"]
 })
-export class StudentComponent implements OnInit {
+export class StudentComponent {
 
   student = STUDENTLIST;
   // Значение для подсветци двоишников
   valueRed: boolean = true ;
   input: string = "";
 
-  constructor() { }
+  // constructor() { }
 
-  ngOnInit(): void {
-  }
-  redAlert(){
+    redAlert(): void{
     this.valueRed = !this.valueRed;
   }
 
