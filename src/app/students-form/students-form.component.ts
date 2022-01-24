@@ -67,7 +67,7 @@ allStudent = STUDENTLIST;
   return null;
   }
 
-  addForm(): any {
+  addForm(): void {
     const guvno = {
       "id": this.editStudentForm.value.serchUserId,
       "name": this.editStudentForm.value.userAllName.userName,
@@ -77,12 +77,6 @@ allStudent = STUDENTLIST;
       "rating":this.editStudentForm.value.userRating,
     };
     this.studentService.editStudent(guvno);
-  }
-
-  addHuiskaPiska(): any {
-    this.editStudentForm.controls["userRating"].setValue("3");
-
-    this.editStudentForm.controls["userAllName"].setValue( { userName: "Батон", userSurname: "Сасан", userPatronymic: "Тухлорез" } );
   }
 
   findId(): void {

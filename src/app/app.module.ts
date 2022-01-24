@@ -6,6 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { StudentComponent } from "./student/student.component";
 import { StudentsFormComponent } from "./students-form/students-form.component";
+// eslint-disable-next-line @typescript-eslint/no-duplicate-imports
 import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
