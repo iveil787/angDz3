@@ -34,3 +34,8 @@ form {
     padding: 5px;
     border-radius: 1em;
   }
+
+  .fleximuss {
+    display: flex;
+    flex-direction: row;
+  }

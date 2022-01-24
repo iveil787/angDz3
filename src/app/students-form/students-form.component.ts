@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { STUDENTLIST  } from "../studentsLlist";
 import { FormGroup, FormControl, Validators, AbstractControl } from "@angular/forms";
+import { StudentsServiceService } from "../students-service.service";
 
 export interface ValidationErrors {
   [key: string]: unknown;
@@ -15,8 +16,10 @@ export class StudentsFormComponent {
 
 allStudent = STUDENTLIST;
 
+  editStudentForm: FormGroup;
+
   myForm: FormGroup;
-  constructor(){
+  constructor(@Inject(StudentsServiceService)public studentService: StudentsServiceService){
       this.myForm = new FormGroup({
         userAllName: new FormGroup({
           "userName": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
@@ -26,6 +29,17 @@ allStudent = STUDENTLIST;
         ),
           "userDateBirth": new FormControl(null, [Validators.required, this.limitAge, Validators.pattern("[^а-яА-Я a-zA-Z]*")]),
           "userRating": new FormControl(null, [Validators.required, Validators.maxLength(1), Validators.pattern("[0-5]")]),
+      });
+      this.editStudentForm = new FormGroup({
+        userAllName: new FormGroup({
+          "userName": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
+          "userSurname": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
+          "userPatronymic": new FormControl(null, [Validators.required, Validators.pattern("[а-яА-Я a-zA-Z]*")]),
+        },
+        ),
+          "userDateBirth": new FormControl(null, [Validators.required, this.limitAge, Validators.pattern("[^а-яА-Я a-zA-Z]*")]),
+          "userRating": new FormControl(null, [Validators.required, Validators.maxLength(1), Validators.pattern("[0-5]")]),
+          "serchUserId": new FormControl(null, [Validators.required, Validators.pattern("[0-9]*")]),
       });
   }
 
@@ -51,5 +65,32 @@ allStudent = STUDENTLIST;
                 "inputedDate": inputDate.toLocaleDateString() };
   }
   return null;
+  }
+
+  addForm(): any {
+    const guvno = {
+      "id": this.editStudentForm.value.serchUserId,
+      "name": this.editStudentForm.value.userAllName.userName,
+      "surname":this.editStudentForm.value.userAllName.userSurname,
+      "patronymic": this.editStudentForm.value.userAllName.userPatronymic,
+      "dateBirth": this.editStudentForm.value.userDateBirth,
+      "rating":this.editStudentForm.value.userRating,
+    };
+    this.studentService.editStudent(guvno);
+  }
+
+  addHuiskaPiska(): any {
+    this.editStudentForm.controls["userRating"].setValue("3");
+
+    this.editStudentForm.controls["userAllName"].setValue( { userName: "Батон", userSurname: "Сасан", userPatronymic: "Тухлорез" } );
+  }
+
+  findId(): void {
+    const student = this.studentService.getStudentById(+this.editStudentForm.value.serchUserId);
+
+    this.editStudentForm.controls["userAllName"].setValue( { userName: student?.name, userSurname: student?.surname,
+      userPatronymic: student?.patronymic });
+    this.editStudentForm.controls["userRating"].setValue(student?.rating);
+    this.editStudentForm.controls["userDateBirth"].setValue(student?.dateBirth);
   }
 }

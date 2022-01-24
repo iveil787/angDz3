@@ -1,7 +1,46 @@
 <!DOCTYPE html>
-<form [formGroup]="myForm"
+
+<div class="fleximuss">
+ <form [formGroup]="myForm"
  novalidate
- (ngSubmit)="newStudent()"> Форма для добавления нового студента   
+ (ngSubmit)="newStudent()"> Добавления нового студента   
+ <div formGroupName = "userAllName">
+ <div class="form-group">
+        <label>Имя</label>
+        <input class="form-control" name="name" formControlName="userName" />
+    </div>
+    <div class="form-group">
+        <label>Фамилия</label>
+        <input class="form-control" name="name" formControlName="userSurname" />
+    </div>
+    <div class="form-group">
+        <label>Отчество</label>
+        <input class="form-control" name="name" formControlName="userPatronymic" />
+    </div>
+</div>
+    <div class="form-group">
+        <label>Дата Рождения</label>
+        <input class="form-control" name="name" formControlName="userDateBirth" />
+    </div>    
+    <div class="form-group">
+        <label>Средний балл</label>
+        <input class="form-control" name="email" formControlName="userRating" />
+    </div>
+    
+    <div class="form-group">
+        <button class="btn btn-default" [disabled]="myForm.invalid">
+            Добавить
+        </button>
+        </div>
+  </form>   
+<!-- ========================================== start of editStudentForm  ======================================= --> 
+  <form [formGroup]="editStudentForm"
+ novalidate
+ (ngSubmit)="addForm()"> Редактирования студента
+ <div class="form-group">
+  <label>поиск по ID</label>
+  <input class="form-control" name="email" formControlName="serchUserId" />
+</div>   
  <div formGroupName = "userAllName">
  <div class="form-group">
         <label>Имя</label>
@@ -25,8 +64,16 @@
         <input class="form-control" name="email" formControlName="userRating" />
     </div>
     <div class="form-group">
-        <button class="btn btn-default" [disabled]="myForm.invalid">
-            Отправить
+        <button class="btn btn-default" [disabled]="editStudentForm.invalid"
+          (click)="addForm()"
+        >
+        Редактировать 
         </button>
-    </div>
-</form>
+        <button
+          class="btn btn-default"
+          (click)="findId()">
+          Поиск по ID студента
+        </button>
+        </div>
+  </form>
+</div>

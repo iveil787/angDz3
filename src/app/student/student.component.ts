@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
-import { STUDENTLIST  } from "../studentsLlist";
+import { Component, Inject } from "@angular/core";
+import { StudentsServiceService } from "../students-service.service";
+// import { STUDENTLIST  } from "../studentsLlist";
 
 
 @Component({
@@ -9,15 +10,20 @@ import { STUDENTLIST  } from "../studentsLlist";
 })
 export class StudentComponent {
 
-  student = STUDENTLIST;
+  student;
   // Значение для подсветци двоишников
   valueRed: boolean = true ;
   input: string = "";
 
-  // constructor() { }
+  constructor(@Inject(StudentsServiceService)public studentService: StudentsServiceService){
+    this.student = studentService.getStudents();
+  }
 
     redAlert(): void{
     this.valueRed = !this.valueRed;
   }
+
+
+
 
 }
